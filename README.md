@@ -18,9 +18,9 @@
 
 - OBS Hook Comming soon 👀
 
--Tracking Files Blocker
+- Tracking Files Blocker
 
--Sniper Bullet TP
+- Sniper Bullet TP
 
 -Aimbot
 
