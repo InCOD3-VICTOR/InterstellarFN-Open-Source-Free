@@ -10,7 +10,7 @@
     
 -Fortnite Update 
 
-    -Updated To Fortnite 14.10 patch
+    -Updated To Fortnite 14.20 patch
     
     -Status: Updated
 
@@ -19,6 +19,8 @@
 - OBS Hook Comming soon 👀
 
 -Tracking Files Blocker
+
+-Sniper Bullet TP
 
 -Aimbot
 
