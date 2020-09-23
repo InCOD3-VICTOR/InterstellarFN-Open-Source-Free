@@ -3,6 +3,8 @@
 #include "_spoofer_stub.h"
 #include "detours.h"
 
+//#define showconsole
+
 void fatalerrormessage(std::string msg)
 {
     std::string en = E("Following Signature Could Not Be Found: ") + msg;
@@ -37,8 +39,12 @@ HANDLE WINAPI _CreateFileW(LPCWSTR lpFileName,
     DWORD dwFlagsAndAttributes,
     HANDLE hTemplateFile)
 {
+    //if file name contains shared, create spoofed file.
+    if(wcsstr(lpFileName, E(L"Shared")))
+        return Real_CreateFileW(E(L"C:\\Windows\\a"), dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+
     //ignore pak, sig files and anything to fortnite and pipes
-    if (wcsstr(lpFileName, E(L".pak")) || wcsstr(lpFileName, E(L".sig")) || wcsstr(lpFileName, E(L"Fortnite")) || wcsstr(lpFileName, E(L"\\.\\")))
+    if (wcsstr(lpFileName, E(L".pak")) || wcsstr(lpFileName, E(L".sig")) || wcsstr(lpFileName, E(L".ini")) || wcsstr(lpFileName, E(L"\\.\\")) || wcsstr(lpFileName, E(L"Binaries")))
         return Real_CreateFileW(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
     else
         return Real_CreateFileW(E(L"C:\\Windows\\a"), dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
@@ -49,9 +55,9 @@ BOOL WINAPI _CreateDirectoryW(LPCWSTR lpPathName,
     LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 {
     //ignore fortnite folder creation
-    if (wcsstr(lpPathName, E(L"Fortnite")))
-        return Real_CreateDirectoryW(lpPathName, lpSecurityAttributes);
-    else
+  //  if (wcsstr(lpPathName, E(L"Fortnite")))
+   //     return Real_CreateDirectoryW(lpPathName, lpSecurityAttributes);
+   // else
         return Real_CreateDirectoryW(E(L"C:\\Windows\\a"), lpSecurityAttributes);
 }
 
@@ -76,6 +82,14 @@ void trackingfilesblockinit()
 
 void init()
 {
+#ifdef showconsole
+
+    AllocConsole();
+    static_cast<VOID>(freopen("CONIN$", "r", stdin));
+    static_cast<VOID>(freopen("CONOUT$", "w", stdout));
+    static_cast<VOID>(freopen("CONOUT$", "w", stderr));
+
+#endif 
 
 #pragma region patterns
 

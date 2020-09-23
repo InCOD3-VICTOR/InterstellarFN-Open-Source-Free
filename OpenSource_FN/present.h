@@ -7,7 +7,6 @@
 #include "Settings.h"
 #include "xorstr.h"
 #include "main.h"
-
 #pragma comment(lib, "C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Lib\\x64\\d3d11.lib")
 
 static bool firstTime = true;
@@ -37,6 +36,7 @@ ImGuiWindow& BeginScene() {
 	return *ImGui::GetCurrentWindow();
 }
 
+
 LRESULT CALLBACK WndProcHook(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (msg == WM_KEYUP && wParam == VK_F1)
@@ -53,6 +53,10 @@ LRESULT CALLBACK WndProcHook(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	if (msg == WM_KEYUP && wParam == VK_F3)
 	{
 		settings::snaplines = !settings::snaplines;
+	}
+	if (msg == WM_KEYUP && wParam == VK_F4)
+	{
+		settings::sniperbullettp = !settings::sniperbullettp;
 	}
 	if (msg == WM_KEYUP && wParam == VK_F5)
 	{
@@ -126,7 +130,8 @@ HRESULT presenthook(IDXGISwapChain* swap, UINT sync_interval, UINT flags)
 
 	if (g_pRenderTargetView)
 	{
-		ImGui::GetIO().Fonts->AddFontFromFileTTF(E("C:\\Windows\\Fonts\\arialbd.ttf"), 12.0f);
+		//ImGui::GetIO().Fonts->AddFontFromFileTTF(E("C:\\Windows\\Fonts\\arialbd.ttf"), 12.0f);
+		ImGuiIO& io = ImGui::GetIO();
 		ImGui_ImplDX11_Init(iat(GetForegroundWindow)(), uDevice, m_pContext);
 		ImGui_ImplDX11_CreateDeviceObjects();
 		m_pContext->OMSetRenderTargets(1, &g_pRenderTargetView, NULL);
@@ -144,6 +149,9 @@ HRESULT presenthook(IDXGISwapChain* swap, UINT sync_interval, UINT flags)
 		if (discord::GetAsyncKeyState(VK_SUBTRACT))
 			settings::fov -= 1;
 
+		if (settings::fov < 0)
+			settings::fov = 0;
+
 		std::string mem = "";
 		if (settings::aimtype == 1)
 			mem = E("Mouse Aim");
@@ -155,14 +163,33 @@ HRESULT presenthook(IDXGISwapChain* swap, UINT sync_interval, UINT flags)
 		std::string box = (settings::boxesp ? E("TRUE") : E("FALSE"));
 		std::string snap = (settings::snaplines ? E("TRUE") : E("FALSE"));
 
+		std::string btp = (settings::sniperbullettp ? E("TRUE") : E("FALSE"));
+
 		if (settings::smooth <= 0)
 			settings::smooth = 0;
 
-		std::string options = E("Aim Type (F1): ") + mem + E(" | Box ESP (F2): ") + box + E(" | Snaplines (F3): ") + snap + E(" | Aim Fov (+/-): ") + std::to_string(settings::fov) + E(" | Smooth (F5/F6): ") + std::to_string(settings::smooth) + E("    MEMORY AIM GIVES EXPLOIT BAN AFTER ~1H USE MOUSE AIM FOR UD!");
+		std::string mema = E("Aim Type (F1): ") + mem;
+		std::string boxespa = E("Box ESP (F2): ") + box;
+		std::string snaplinea = E("Snaplines (F3): ") + snap;
+		std::string bullettpa = E("Sniper Bullet Tp (F4): ") + btp;
+		std::string aimfova = E("Aim Fov (+/-): ") + std::to_string(settings::fov);
+		std::string smootha = E("Smooth (F5/F6): ") + std::to_string(settings::smooth);
 
-		windowshit.DrawList->AddText(ImVec2(50, 50), ImColor::HSV(hsv / 255.f, 255, 255), E("Interstellar Open Source Free (If You Bought This You Got Scammed)"));
-		windowshit.DrawList->AddText(ImVec2(50, 75), ImColor::HSV(hsv / 255.f, 255, 255), options.c_str());
+		std::string build = E("Build: V0.8  ") + (std::string)__DATE__ + " " + (std::string)__TIME__;
+	
+	
+		windowshit.DrawList->AddRectFilled(ImVec2(50, 50), ImVec2(300, 200), ImGui::GetColorU32({ 0.f,0.f,0.f,0.8f }), 5);
 
+		windowshit.DrawList->AddText(ImVec2(60, 60), ImColor::HSV(hsv / 255.f, 255, 255), E("Interstellar Open Source Free"));
+
+		windowshit.DrawList->AddText(ImVec2(60, 75), ImColor::HSV(hsv / 255.f, 255, 255), mema.c_str());
+		windowshit.DrawList->AddText(ImVec2(60, 90), ImColor::HSV(hsv / 255.f, 255, 255), boxespa.c_str());
+		windowshit.DrawList->AddText(ImVec2(60, 105), ImColor::HSV(hsv / 255.f, 255, 255), snaplinea.c_str());
+		windowshit.DrawList->AddText(ImVec2(60, 120), ImColor::HSV(hsv / 255.f, 255, 255), bullettpa.c_str());
+		windowshit.DrawList->AddText(ImVec2(60, 135), ImColor::HSV(hsv / 255.f, 255, 255), aimfova.c_str());
+		windowshit.DrawList->AddText(ImVec2(60, 150), ImColor::HSV(hsv / 255.f, 255, 255), smootha.c_str());
+
+		windowshit.DrawList->AddText(ImVec2(60, 170), ImColor::HSV(hsv / 255.f, 255, 255), build.c_str());
 		windowshit.DrawList->AddCircle(ImVec2(spoof_call(jmp, GetSystemMetrics, 0) / 2, spoof_call(jmp, GetSystemMetrics, 1) / 2), settings::fov, ImGui::GetColorU32({ 0.f, 0.f, 0.f, 1.f }), 20, 1.f);
 
 		cheatinit(windowshit, spoof_call(jmp, GetSystemMetrics, 0), spoof_call(jmp, GetSystemMetrics, 1));

@@ -20,6 +20,7 @@
 #include "Discord.h"
 #include "xorstr.h"
 #include "object.h"
+#include "processevent.h"
 #pragma endregion headers
 
 #define RELATIVE_ADDR(addr, size) ((PBYTE)((UINT_PTR)(addr) + *(PINT)((UINT_PTR)(addr) + ((size) - sizeof(INT))) + (size)))

@@ -16,6 +16,9 @@ namespace settings
 	//draws a line from the players head to the bottom of the screen
 	bool snaplines = true;
 
+	//allows player to shoot through walls using an sniper
+	bool sniperbullettp = false;
+
 	//aimbot fov
 	int fov = 300;
 }

@@ -943,6 +943,7 @@ namespace ImGui
 
 	IMGUI_API bool          ButtonBehavior(const ImRect& bb, ImGuiID id, bool* out_hovered, bool* out_held, ImGuiButtonFlags flags = 0);
 	IMGUI_API bool          ButtonEx(const char* label, const ImVec2& size_arg = ImVec2(0, 0), ImGuiButtonFlags flags = 0);
+	IMGUI_API bool			MyButtonExXD2(const char* label, const ImVec2& size_arg, bool inuse, ImGuiButtonFlags flags);
 	IMGUI_API bool          CloseButton(ImGuiID id, const ImVec2& pos, float radius);
 	IMGUI_API bool          ArrowButton(ImGuiID id, ImGuiDir dir, ImVec2 padding, ImGuiButtonFlags flags = 0);
 
