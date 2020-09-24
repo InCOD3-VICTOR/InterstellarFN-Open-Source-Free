@@ -65,6 +65,9 @@ void trackingfilesblockinit()
 {
     //using detours because i cant be arsed at this point because people will paste this anyway :rolling_eyes:
 
+    
+    //ok monkeys so ill have to say this, discord uses minhook for hooking. and i doubt minhook can hook windows api functions, so i used detours.
+    
     //initializing detours
     DetourTransactionBegin();
 
