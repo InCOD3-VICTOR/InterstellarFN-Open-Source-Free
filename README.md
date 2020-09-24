@@ -70,4 +70,6 @@
 
 -ImGui
 
+-Lazy Importer
+
 -Detours
