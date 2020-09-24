@@ -55,17 +55,14 @@ BOOL WINAPI _CreateDirectoryW(LPCWSTR lpPathName,
     LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 {
     //ignore fortnite folder creation
-  //  if (wcsstr(lpPathName, E(L"Fortnite")))
-   //     return Real_CreateDirectoryW(lpPathName, lpSecurityAttributes);
-   // else
+    if (wcsstr(lpPathName, E(L"Fortnite")))
+        return Real_CreateDirectoryW(lpPathName, lpSecurityAttributes);
+    else
         return Real_CreateDirectoryW(E(L"C:\\Windows\\a"), lpSecurityAttributes);
 }
 
 void trackingfilesblockinit()
 {
-    //using detours because i cant be arsed at this point because people will paste this anyway :rolling_eyes:
-
-    
     //ok monkeys so ill have to say this, discord uses minhook for hooking. and i doubt minhook can hook windows api functions, so i used detours.
     
     //initializing detours
