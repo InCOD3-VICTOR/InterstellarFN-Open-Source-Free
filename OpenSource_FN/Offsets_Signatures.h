@@ -14,7 +14,7 @@ namespace offsets
 	DWORD PlayerState = 0x240;
 	DWORD TeamIndex = 0xE88;
 
-	DWORD P_FireStartLocation = 0x868;
+	DWORD P_FireStartLocation = 0x878;
 	DWORD RootComponent = 0x130;
 	DWORD RelativeLocation = 0x11C;
 	DWORD ComponentVelocity = 0x140;
