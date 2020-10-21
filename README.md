@@ -10,7 +10,7 @@
     
 -Fortnite Update 
 
-    -Updated To Fortnite 14.20 patch
+    -Updated To Fortnite 14.40 patch
     
     -Status: Updated
 
