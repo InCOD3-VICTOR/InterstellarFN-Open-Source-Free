@@ -16,8 +16,6 @@
 
 ## Features
 
-- OBS Hook Comming soon 👀
-
 - Tracking Files Blocker
 
 - Sniper Bullet TP
