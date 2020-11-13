@@ -4,9 +4,9 @@
 
 -Anti-Cheats
 
-    -Easy Anti Cheat (EAC): Undetected (UD)
+    -Easy Anti Cheat (EAC): Detected (DD)
     
-    -Battle Eye (BE): Undetected (UD)
+    -Battle Eye (BE): ????
     
 -Fortnite Update 
 
