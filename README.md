@@ -6,19 +6,19 @@
 
     -Easy Anti Cheat (EAC): Detected (DD)
     
-    -Battle Eye (BE): ????
+    -Battle Eye (BE): Detected (DD)
     
 -Fortnite Update 
 
-    -Updated To Fortnite 14.40 patch
+    -Updated To Fortnite 14.60 patch
     
     -Status: Updated
 
 ## Features
 
-- Tracking Files Blocker
+- Tracking Files Blocker (Semi Working, even if u paste mine it wont work lul)
 
-- Sniper Bullet TP
+- Sniper Bullet TP (Patched)
 
 -Aimbot
 
@@ -31,8 +31,6 @@
     -Box ESP
   
     -Snaplines
-  
-    -Corner ESP (Planned)
     
     
 ## How To Use/Compile
